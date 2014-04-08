@@ -2,9 +2,9 @@
 title('RoboTime');
 
 // define variables
-var mainx = 100;
+var mainx = 50;
 var mainy = 326;
-var tired_workery = 300;
+var tired_workery = 470;
 var tired_workerx = 150;
 var bulletX = mainx;
 var bulletY = mainy;
@@ -23,6 +23,7 @@ var setup = function() {
     // set up the size of the canvas (you probably don't want to change this!)
     size(800, 600);
 
+    killed = loadImage("killed.png");
     backgroundImage = loadImage("Background2.png");
     backgroundImage.resize(800, 600);
     tired_worker = loadImage("enemy.png");
@@ -32,7 +33,7 @@ var setup = function() {
     //var key_hole = loadImage("Key_Hole.png");
     //var crate_with_button = loadImage("Crate_With_Button.png");
     //var health_bar = loadImage("Health_Bar.png");
-    //var tank = loadImage("Tank.png");
+    var tank = loadImage("Tank.png");
     //var ammo_box = loadImage("Ammo_Box.png");
      main_character = loadImage("main_character.png");
 
@@ -56,15 +57,15 @@ var draw = function() {
     //image(crate_with_button, 300, 325);
     //image(health_bar, 440, -3);
     //image(ammo_box, 0, 300);
-    image(main_character, mainx, 300);
-    //image(tank, 175, 250);
+    image(main_character, mainx, 470);
+    image(tank, 175, 250);
     image(tired_worker, tired_workerx, tired_workery);
 
     if (bulletX > tired_workerx) {
 	bulletFired = false;
 	//Uncomment this line when worker BUG is fixed! 
-	//bulletX = 0;
-	//image(killed, tired_workerx, tired_workery);
+	bulletX = 0;
+	image(killed, tired_workerx, tired_workery);
     }
 
     if (keyIsPressed && keyCode === RIGHT) {
