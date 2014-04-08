@@ -9,6 +9,7 @@ var tired_workerx = 150;
 var bulletX = mainx;
 var bulletY = mainy;
 var bulletFired = false;
+var enemyKilled = false;
 
 var mouseClicked = function() {
 
@@ -33,7 +34,7 @@ var setup = function() {
     //var key_hole = loadImage("Key_Hole.png");
     //var crate_with_button = loadImage("Crate_With_Button.png");
     //var health_bar = loadImage("Health_Bar.png");
-    var tank = loadImage("Tank.png");
+    tank = loadImage("Tank.png");
     //var ammo_box = loadImage("Ammo_Box.png");
      main_character = loadImage("main_character.png");
 
@@ -58,10 +59,14 @@ var draw = function() {
     //image(health_bar, 440, -3);
     //image(ammo_box, 0, 300);
     image(main_character, mainx, 470);
-    image(tank, 175, 250);
+    image(tank, 375, 375);
     image(tired_worker, tired_workerx, tired_workery);
 
     if (bulletX > tired_workerx) {
+	enemyKilled = true;
+    }
+
+    if (enemyKilled) {
 	bulletFired = false;
 	//Uncomment this line when worker BUG is fixed! 
 	bulletX = 0;
