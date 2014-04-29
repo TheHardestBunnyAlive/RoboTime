@@ -11,6 +11,7 @@ var bulletX = mainx;
 var bulletY = mainy;
 var bulletFired = false;
 var enemyKilled = false;
+var playerKilled = false;
 
 var mouseClicked = function() {
 
@@ -30,6 +31,7 @@ var setup = function() {
     backgroundImage.resize(800, 600);
     tired_worker = loadImage("enemy.png");
     spike = loadImage("spike.png");
+    deadchar = loadImage("dead.png");
     //var pistol = loadImage("Gun.png");
     //var assault_rifle = loadImage("Assault_Rifle.png");
     //var jet = loadImage("Jet.png");
@@ -37,7 +39,8 @@ var setup = function() {
     //var crate_with_button = loadImage("Crate_With_Button.png");
     //var health_bar = loadImage("Health_Bar.png");
     tank = loadImage("Tank.png");
-    //var ammo_box = loadImage("Ammo_Box.png");
+
+ loadImage("Ammo_Box.png");
      main_character = loadImage("main_character.png");
 
 };
@@ -69,6 +72,8 @@ var draw = function() {
 	enemyKilled = true;
 	bulletFired = false;
 	bulletX = 0;
+
+
     }
 
     if (enemyKilled) {
