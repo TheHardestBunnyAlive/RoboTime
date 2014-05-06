@@ -7,7 +7,7 @@ var tired_workery = 470;
 var tired_workerx = 150;
 var bulletFired = false;
 var enemyKilled = false;
-var spike = 315;
+var spikeX = 315;
 
 var player = {
     x: 50,
@@ -67,7 +67,7 @@ var draw = function() {
     //image(crate_with_button, 300, 325);
     //image(health_bar, 440, -3);
     //image(ammo_box, 0, 300);
-    image(spike, 315, 480);
+    image(spike, spikeX, 480);
     image(player.image, player.x, player.y);
     image(tank, tankx, 375);
     image(tired_worker, tired_workerx, tired_workery);
@@ -80,9 +80,8 @@ var draw = function() {
 
     }
 	//Character Collisision with spikes
-    if (player.x > spike) {
+    if (player.x > spikeX) {
 	player.killed = true;
-	player.x = 0;
 
     }
     if (player.killed) {
@@ -123,7 +122,7 @@ var draw = function() {
     }
 	//Bullet Starts Here
     if (bulletFired) {
-	fill(166, 255, 0);
+	fill(66, 66, 66);
 	ellipse(bulletX, bulletY, 4, 4);
 	bulletX = bulletX + 5;
     }
