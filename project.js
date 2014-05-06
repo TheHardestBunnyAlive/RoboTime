@@ -2,21 +2,26 @@
 title('RoboTime');
 
 // define variables
-var mainx = 50;
-var mainy = 326;
 var tankx = 375;
 var tired_workery = 470;
 var tired_workerx = 150;
-var bulletX = mainx;
-var bulletY = mainy;
 var bulletFired = false;
 var enemyKilled = false;
-var playerKilled = false;
+var spike = 315;
+
+var player = {
+    x: 50,
+    y: 470,
+    killed: false
+};
+
+var bulletX = player.x;
+var bulletY = player.y + 25;
 
 var mouseClicked = function() {
 
     bulletFired = true;
-    bulletX = 1;
+    bulletX = player.x + 37;
 
 };
 
@@ -40,8 +45,7 @@ var setup = function() {
     //var health_bar = loadImage("Health_Bar.png");
     tank = loadImage("Tank.png");
 
- loadImage("Ammo_Box.png");
-     main_character = loadImage("main_character.png");
+    player.image = loadImage("main_character.png");
 
 };
 
@@ -64,17 +68,28 @@ var draw = function() {
     //image(health_bar, 440, -3);
     //image(ammo_box, 0, 300);
     image(spike, 315, 480);
-    image(main_character, mainx, 470);
+    image(player.image, player.x, player.y);
     image(tank, tankx, 375);
     image(tired_worker, tired_workerx, tired_workery);
 
-    if (bulletX > tired_workerx) {
+    if (bulletX > tired_workerx && bulletX < tired_workerx + 20) {
 	enemyKilled = true;
 	bulletFired = false;
 	bulletX = 0;
 
 
     }
+	//Character Collisision with spikes
+    if (player.x > spike) {
+	player.killed = true;
+	player.x = 0;
+
+    }
+    if (player.killed) {
+	image(deadchar, player.x, player.y);
+
+    }
+
 
     if (enemyKilled) {
 	//Uncomment this line when worker BUG is fixed! 
@@ -83,10 +98,10 @@ var draw = function() {
 
 	//Character Movement Start
     if (keyIsPressed && keyCode === RIGHT) {
-	mainx += 2;
+	player.x += 2;
 
     } else if (keyIsPressed && keyCode === LEFT) {
-	mainx -= 2;
+	player.x -= 2;
     }
 	//Character Movement End
 
@@ -103,8 +118,8 @@ var draw = function() {
 
 
 
-    if (mainx > 600) {
-	mainx = 0;
+    if (player.x > 600) {
+	player.x = 0;
     }
 	//Bullet Starts Here
     if (bulletFired) {
