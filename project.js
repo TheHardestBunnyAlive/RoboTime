@@ -8,6 +8,8 @@ var tired_workerx = 150;
 var bulletFired = false;
 var enemyKilled = false;
 var spikeX = 315;
+var packX = 25;
+var packY = 500;
 
 var player = {
     x: 50,
@@ -32,6 +34,9 @@ var setup = function() {
     size(800, 600);
 
     killed = loadImage("killed.png");
+    killed_l = loadImage("killed_left.png");
+    pack_1 = loadImage("main_char_1");
+    pack = loadImage("healthp.png");
     backgroundImage = loadImage("Background2.png");
     backgroundImage.resize(800, 600);
     tired_worker = loadImage("enemy.png");
@@ -67,6 +72,8 @@ var draw = function() {
     //image(crate_with_button, 300, 325);
     //image(health_bar, 440, -3);
     //image(ammo_box, 0, 300);
+    image(pack_1, player);
+    image(pack, packX, packY);
     image(spike, spikeX, 480);
     image(player.image, player.x, player.y);
     image(tank, tankx, 375);
@@ -89,6 +96,10 @@ var draw = function() {
 
     }
 
+	//Character Collision with Spikes ends Here
+	
+	
+	//Collision 
 
     if (enemyKilled) {
 	//Uncomment this line when worker BUG is fixed! 
@@ -113,7 +124,7 @@ var draw = function() {
     } else if (keyIsPressed && keyCode === DOWN) {
 	tankx -= 2;
     }
-	//Tank Movement End
+	//Tank Movement Ends
 
 
 
@@ -127,4 +138,11 @@ var draw = function() {
 	bulletX = bulletX + 5;
     }
 	//Bullet Ends Here
+
+    if(player.x > spikeX){
+	fill(255, 0,0);
+	textSize(50);
+	text("You Died!", 312, 312);
+	dog = loadImage("dead.png");
+    }
 };
