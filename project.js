@@ -29,10 +29,10 @@ var mouseClicked = function() {
 
 };
 
-// this code is executed once when the program is started
+// This code is executed once when the program is started
 var setup = function() {
 
-    // set up the size of the canvas (you probably don't want to change this!)
+    // Set up the size of the canvas (you probably don't want to change this!)
     size(800, 600);
 
     killed = loadImage("killed.png");
@@ -60,10 +60,10 @@ var setup = function() {
 var keyPressed = function() {
 }
 
-// override draw function, by default it will be called 60 times per second
+// Override draw function, by default it will be called 60 times per second
 var draw = function() {
 
-    // clear the screen
+    // Clear the screen
     background(255, 255, 255);
 
     // Left Number = Side to Side Right Number = Up and down
@@ -77,7 +77,8 @@ var draw = function() {
     image(tired_worker, tired_workerx, tired_workery);
     image(bossL, bossX, bossY);
 
-    if (bulletX > tired_workerx && bulletX < tired_workerx + 20) {
+   
+ if (bulletX > tired_workerx && bulletX < tired_workerx + 20) {
 	enemyKilled = true;
 	bulletFired = false;
 	bulletX = 0;
