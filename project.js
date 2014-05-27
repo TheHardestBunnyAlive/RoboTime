@@ -10,6 +10,8 @@ var enemyKilled = false;
 var spikeX = 315;
 var packX = 25;
 var packY = 500;
+var bossX = 600;
+var bossY = 470;
 
 var player = {
     x: 50,
@@ -42,6 +44,7 @@ var setup = function() {
     tired_worker = loadImage("enemy.png");
     spike = loadImage("spike.png");
     deadchar = loadImage("dead.png");
+    bossL = loadImage("enemyboss_left.png");
     //var pistol = loadImage("Gun.png");
     //var assault_rifle = loadImage("Assault_Rifle.png");
     //var jet = loadImage("Jet.png");
@@ -65,19 +68,14 @@ var draw = function() {
 
     // Left Number = Side to Side Right Number = Up and down
     image(backgroundImage, 0, 0);
-    //image(jet, 250, 75);
-    //image(key_hole, 300, 315);
-    //textSize(15)
-    //text("", 115, 50);
-    //image(crate_with_button, 300, 325);
     //image(health_bar, 440, -3);
-    //image(ammo_box, 0, 300);
     image(pack_1, player);
     image(pack, packX, packY);
     image(spike, spikeX, 480);
     image(player.image, player.x, player.y);
     image(tank, tankx, 375);
     image(tired_worker, tired_workerx, tired_workery);
+    image(bossL, bossX, bossY);
 
     if (bulletX > tired_workerx && bulletX < tired_workerx + 20) {
 	enemyKilled = true;
