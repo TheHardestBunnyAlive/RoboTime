@@ -1,12 +1,13 @@
 
 title('RoboTime');
 
-// define variables
+// Define variables
 var tankx = 375;
 var tired_workery = 470;
 var tired_workerx = 150;
 var bulletFired = false;
 var enemyKilled = false;
+var bossKilled = false;
 var spikeX = 315;
 var packX = 25;
 var packY = 500;
@@ -29,22 +30,33 @@ var mouseClicked = function() {
 
 };
 
+
+
+
+
+
 // This code is executed once when the program is started
 var setup = function() {
+
+
+
+
+
 
     // Set up the size of the canvas (you probably don't want to change this!)
     size(800, 600);
 
     killed = loadImage("killed.png");
+    bosskilled = loadImage("bosskilled.png");
     killed_l = loadImage("killed_left.png");
-    pack_1 = loadImage("main_char_1");
+    pack_1 = loadImage("main_char_1.png");
     pack = loadImage("healthp.png");
     backgroundImage = loadImage("Background2.png");
     backgroundImage.resize(800, 600);
     tired_worker = loadImage("enemy.png");
     spike = loadImage("spike.png");
     deadchar = loadImage("dead.png");
-    bossL = loadImage("enemyboss_left.png");
+    bossImg = loadImage("enemyboss_left.png");
     //var pistol = loadImage("Gun.png");
     //var assault_rifle = loadImage("Assault_Rifle.png");
     //var jet = loadImage("Jet.png");
@@ -60,11 +72,28 @@ var setup = function() {
 var keyPressed = function() {
 }
 
+
+
+
+
+
 // Override draw function, by default it will be called 60 times per second
 var draw = function() {
 
+
+
+
+
+
+
     // Clear the screen
     background(255, 255, 255);
+
+
+
+
+
+
 
     // Left Number = Side to Side Right Number = Up and down
     image(backgroundImage, 0, 0);
@@ -75,7 +104,7 @@ var draw = function() {
     image(player.image, player.x, player.y);
     image(tank, tankx, 375);
     image(tired_worker, tired_workerx, tired_workery);
-    image(bossL, bossX, bossY);
+    image(bossImg, bossX, bossY);
 
    
  if (bulletX > tired_workerx && bulletX < tired_workerx + 20) {
@@ -85,6 +114,20 @@ var draw = function() {
 
 
     }
+
+
+ if (bulletX > bossX && bulletX < bossX + 20) {
+	bossKilled = true;
+	bulletFired = false;
+	bulletX = 0;
+
+
+    }
+
+
+
+
+
 	//Character Collisision with spikes
     if (player.x > spikeX) {
 	player.killed = true;
@@ -94,16 +137,35 @@ var draw = function() {
 	image(deadchar, player.x, player.y);
 
     }
-
 	//Character Collision with Spikes ends Here
 	
 	
+
+
+
+
+
 	//Collision 
 
     if (enemyKilled) {
 	//Uncomment this line when worker BUG is fixed! 
 	image(killed, tired_workerx, tired_workery);
     }
+
+
+
+
+
+
+
+        // When boss gets killed
+    if (bossKilled) {
+	image(bosskilled, bossX, bossY);
+    }
+
+
+
+
 
 	//Character Movement Start
     if (keyIsPressed && keyCode === RIGHT) {
@@ -113,6 +175,9 @@ var draw = function() {
 	player.x -= 2;
     }
 	//Character Movement End
+
+
+
 
 
 
@@ -127,21 +192,43 @@ var draw = function() {
 
 
 
-    if (player.x > 600) {
+
+
+
+
+	//When Character gets Teleported to the Front of the Map
+
+
+    if (player.x > 800) {
 	player.x = 0;
     }
+
+	//------------------
+
+
+
+
+
+
+
 	//Bullet Starts Here
     if (bulletFired) {
 	fill(66, 66, 66);
 	ellipse(bulletX, bulletY, 4, 4);
 	bulletX = bulletX + 5;
     }
+
+
+
+
+
+
 	//Bullet Ends Here
 
     if(player.x > spikeX){
 	fill(255, 0,0);
 	textSize(50);
-	text("You Died!", 312, 312);
+	text("You are hurt.", 312, 312);
 	dog = loadImage("dead.png");
     }
 };
